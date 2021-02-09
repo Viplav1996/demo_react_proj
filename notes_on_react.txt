@@ -1,0 +1,15 @@
+#### Setting default path for the React file:
+In package.json ->
+
+"start": "react-scripts start" // Deafult setting
+
+for Linux and MacOS to:        
+
+"start": "PORT=3006 react-scripts start"            //Change to this in Linux and MacOS
+
+Windows to:
+
+"start": "set PORT=3006 && react-scripts start"     //Change to this in Windows
+
+
+WHERE PORT can be set to any default value you want it to be
