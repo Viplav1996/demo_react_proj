@@ -4,3 +4,4 @@ product list, wish list,
 
 adding productts to wish lists
 
+CONCEPT OF SINGLETONS, accessing two independent components;
