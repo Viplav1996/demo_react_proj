@@ -1,0 +1,6 @@
+.pc-condensed a{
+    margin-right: 25px;
+}
+.list-group-item {
+    display: inline-flex;
+}

@@ -1,0 +1,4 @@
+db.products.insert({"price":120.00, "title":"Space-ship", "imgUrl":"https://img-new.cgtrader.com/items/126508/large_spaceship_3d_concept_design_3d_model_max_5e243036-051f-4b74-bac8-28dc46d69423.jpg"})
+db.products.insert({"price":89.95, "title":"Helmet", "imgUrl":"https://www.3dmake.de/wp-content/uploads/2018/07/3d-modell-star-wars-starkiller-3d-model.jpg"})
+db.products.insert({"price":46.00, "title":"Assualt Rifle", "imgUrl":"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.8FfgLaUy0tT48rO6Imb9ygHaEK%26pid%3DApi&f=1"})
+db.products.insert({"price":56.45, "title":"Toy-car", "imgUrl":"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.lsrueuB46QDc1PE4HgpOdQHaEZ%26pid%3DApi&f=1"})
