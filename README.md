@@ -19,4 +19,3 @@ its the simple programming method
 
 With the help of hooks and already available data, we just configure it locally
 
-
