@@ -15,4 +15,8 @@ ntoifications and independent working of components
 
 making buttons work for adding and removing data from the wishlist
 
-its the simple programming mwthod
+its the simple programming method
+
+With the help of hooks and already available data, we just configure it locally
+
+
