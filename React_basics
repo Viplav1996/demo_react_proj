@@ -16,3 +16,58 @@ Advanced React Hooks
     Reducers and useReducer
     Writing custom hooks
     Rules of hooks
+    
+ #######################################################################################
+   
+ All React apps require three things:
+
+ReactDOM.render(): used to render (show) our app by mounting it onto an HTML element
+A JSX element: called a "root node", because it is the root of our application. Meaning, rendering it will render all children within it
+An HTML (DOM) element: Where the app is inserted within an HTML page. The element is usually a div with an id of "root", located in an index.html file.
+ 
+ 
+ // Packages can be installed locally or brought in through a CDN link (added to head of HTML document) 
+import React from "react";
+import ReactDOM from "react-dom";
+
+// root node (usually a component) is most often called "App"
+const App = <h1>Hello React!</h1>;
+
+// ReactDOM.render(root node, HTML element)
+ReactDOM.render(App, document.getElementById("root"));
+ 
+#######################################################################################
+
+Components and Props
+JSX can be grouped together within individual functions called components.
+
+There are two types of components in React: function components and class components.
+Component names, for function or class components, are capitalized to distinguish them from plain JavaScript functions that do not return JSX:
+
+import React from "react";
+
+/* 	
+  Function component
+  Note the capitalized function name: 'Header', not 'header'
+*/
+function Header() {
+  return <h1>Hello React</h1>;
+}
+
+// Function components which use an arrow function syntax are also valid
+const Header = () => <h1>Hello React</h1>;
+
+/* 
+  Class component
+  Class components have more boilerplate (note the 'extends' keyword and 'render' method)
+*/
+class Header extends React.Component {
+  render() {
+    return <h1>Hello React</h1>;
+  }
+}
+
+#######################################################################################
+
+#######################################################################################
+#######################################################################################
