@@ -5,7 +5,7 @@
 >>> adding productts to wish lists
 
 >>> CONCEPT OF SINGLETONS, accessing two independent components;
-       
+                       
 
 >>> observers will register, OBSERVERS(hotel receptionist wake up call)
 
@@ -18,3 +18,6 @@
 >>> its the simple programming method
 
 >>> With the help of hooks and already available data, we just configure it locally
+>>> 
+
+      callback
