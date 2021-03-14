@@ -34,4 +34,11 @@ class and className
 
       The most commonly used compiler for JSX is called Babel.
       
+      
+      
+ All React apps require three things:
+
+ReactDOM.render(): used to render (show) our app by mounting it onto an HTML element
+A JSX element: called a "root node", because it is the root of our application. Meaning, rendering it will render all children within it
+An HTML (DOM) element: Where the app is inserted within an HTML page. The element is usually a div with an id of "root", located in an index.html file.
  
