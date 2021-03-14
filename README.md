@@ -27,3 +27,11 @@ class and className
 >>>
 
     state 
+
+>>>
+      
+      JSX is not understood by the browser. It needs to be compiled to plain JavaScript, which the browser can understand.
+
+      The most commonly used compiler for JSX is called Babel.
+      
+ 
