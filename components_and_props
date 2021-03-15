@@ -32,183 +32,193 @@ Component names, for function or class components, are capitalized to distinguis
       
 Components, despite being functions, are not called like ordinary JavaScript functions. They are executed by rendering them like we would JSX in our app.
 
-// Do we call this function component like a normal function?
+>>>
+      // Do we call this function component like a normal function?
 
-// No, to execute them and display the JSX they return...
-const Header = () => <h1>Hello React</h1>;
+      // No, to execute them and display the JSX they return...
+      const Header = () => <h1>Hello React</h1>;
 
-// ...we use them as 'custom' JSX elements
-ReactDOM.render(<Header />, document.getElementById("root"));
-// renders: <h1>Hello React</h1>
-The huge benefit of components is their ability to be reused across our apps, wherever we need them.
+      // ...we use them as 'custom' JSX elements
+      ReactDOM.render(<Header />, document.getElementById("root"));
+      // renders: <h1>Hello React</h1>
+      The huge benefit of components is their ability to be reused across our apps, wherever we need them.
 
-Since components leverage the power of JavaScript functions, we can logically pass data to them, like we would by passing it one or more arguments.
+      Since components leverage the power of JavaScript functions, we can logically pass data to them, like we would by passing it one or more arguments.
 
-/* 
-  The Header and Footer components can be reused in any page in our app.
-  Components remove the need to rewrite the same JSX multiple times.
-*/
+      /* 
+        The Header and Footer components can be reused in any page in our app.
+        Components remove the need to rewrite the same JSX multiple times.
+      */
 
-// IndexPage component, visible on '/' route of our app
-function IndexPage() {
-  return (
-    <div>
-      <Header />
-      <Hero />
-      <Footer />
-    </div>
-  );
-}
+      // IndexPage component, visible on '/' route of our app
+      function IndexPage() {
+        return (
+          <div>
+            <Header />
+            <Hero />
+            <Footer />
+          </div>
+        );
+      }
 
-// AboutPage component, visible on the '/about' route
-function AboutPage() {
-  return (
-    <div>
-      <Header />
-      <About />
-      <Testimonials />
-      <Footer />
-    </div>
-  );
-}
+      // AboutPage component, visible on the '/about' route
+      function AboutPage() {
+        return (
+          <div>
+            <Header />
+            <About />
+            <Testimonials />
+            <Footer />
+          </div>
+        );
+      }
+      
 Data passed to components in JavaScript are called props. Props look identical to attributes on plain JSX/HTML elements, but you can access their values within the component itself.
 
 Props are available in parameters of the component to which they are passed. Props are always included as properties of an object.
 
-/* 
-  What if we want to pass custom data to our component from a parent component?
-  For example, to display the user's name in our app header.
-*/
+>>>
 
-const username = "John";
+      /* 
+        What if we want to pass custom data to our component from a parent component?
+        For example, to display the user's name in our app header.
+      */
 
-/* 
-  To do so, we add custom 'attributes' to our component called props.
-  We can add many of them as we like and we give them names that suit the data we pass in.
-  To pass the user's name to the header, we use a prop we appropriately called 'username'
-*/
-ReactDOM.render(
-  <Header username={username} />,
-  document.getElementById("root")
-);
-// We called this prop 'username', but can use any valid identifier we would give, for example, a JavaScript variable
+      const username = "John";
 
-// props is the object that every component receives as an argument
-function Header(props) {
-  // the props we make on the component (username)
-  // become properties on the props object
-  return <h1>Hello {props.username}</h1>;
-}
+      /* 
+        To do so, we add custom 'attributes' to our component called props.
+        We can add many of them as we like and we give them names that suit the data we pass in.
+        To pass the user's name to the header, we use a prop we appropriately called 'username'
+      */
+      ReactDOM.render(
+        <Header username={username} />,
+        document.getElementById("root")
+      );
+      // We called this prop 'username', but can use any valid identifier we would give, for example, a JavaScript variable
+
+      // props is the object that every component receives as an argument
+      function Header(props) {
+        // the props we make on the component (username)
+        // become properties on the props object
+        return <h1>Hello {props.username}</h1>;
+      }
+      
 Props must never be directly changed within the child component.
 
 Another way to say this is that props should never be mutated, since props are a plain JavaScript object.
 
-/* 
-  Components should operate as 'pure' functions.
-  That is, for every input, we should be able to expect the same output.
-  This means we cannot mutate the props object, only read from it.
-*/
+>>>
+      /* 
+        Components should operate as 'pure' functions.
+        That is, for every input, we should be able to expect the same output.
+        This means we cannot mutate the props object, only read from it.
+      */
 
-// We cannot modify the props object :
-function Header(props) {
-  props.username = "Doug";
+      // We cannot modify the props object :
+      function Header(props) {
+        props.username = "Doug";
 
-  return <h1>Hello {props.username}</h1>;
-}
-/* 
-  But what if we want to modify a prop value that is passed to our component?
-  That's where we would use state (see the useState section).
-*/
-The children prop is useful if we want to pass elements / components as props to other components.
+        return <h1>Hello {props.username}</h1>;
+      }
+      /* 
+        But what if we want to modify a prop value that is passed to our component?
+        That's where we would use state (see the useState section).
+      */
+      The children prop is useful if we want to pass elements / components as props to other components.
 
-// Can we accept React elements (or components) as props?
-// Yes, through a special property on the props object called 'children'
+      // Can we accept React elements (or components) as props?
+      // Yes, through a special property on the props object called 'children'
 
-function Layout(props) {
-  return <div className="container">{props.children}</div>;
-}
+      function Layout(props) {
+        return <div className="container">{props.children}</div>;
+      }
 
-// The children prop is very useful for when you want the same
-// component (such as a Layout component) to wrap all other components:
-function IndexPage() {
-  return (
-    <Layout>
-      <Header />
-      <Hero />
-      <Footer />
-    </Layout>
-  );
-}
+      // The children prop is very useful for when you want the same
+      // component (such as a Layout component) to wrap all other components:
+      function IndexPage() {
+        return (
+          <Layout>
+            <Header />
+            <Hero />
+            <Footer />
+          </Layout>
+        );
+      }
 
-// different page, but uses same Layout component (thanks to children prop)
-function AboutPage() {
-  return (
-    <Layout>
-      <About />
-      <Footer />
-    </Layout>
-  );
-}
+      // different page, but uses same Layout component (thanks to children prop)
+      function AboutPage() {
+        return (
+          <Layout>
+            <About />
+            <Footer />
+          </Layout>
+        );
+      }
 Again, since components are JavaScript expressions, we can use them in combination with if-else statements and switch statements to conditionally show content, like this:
 
-function Header() {
-  const isAuthenticated = checkAuth();
-    
-  /* if user is authenticated, show the authenticated app, otherwise, the unauthenticated app */
-  if (isAuthenticated) {
-    return <AuthenticatedApp />   
-  } else {
-    /* alternatively, we can drop the else section and provide a simple return, and the conditional will operate in the same way */
-    return <UnAuthenticatedApp />   
-  }
-}
-To use conditions within a component's returned JSX, you can use the ternary operator or short-circuiting (&& and || operators).
+>>>
 
-function Header() {
-  const isAuthenticated = checkAuth();
+      function Header() {
+        const isAuthenticated = checkAuth();
 
-  return (
-    <nav>
-      {/* if isAuth is true, show nothing. If false, show Logo  */}
-      {isAuthenticated || <Logo />}
-      {/* if isAuth is true, show AuthenticatedApp. If false, show Login  */}
-      {isAuthenticated ? <AuthenticatedApp /> : <LoginScreen />}
-      {/* if isAuth is true, show Footer. If false, show nothing */}
-      {isAuthenticated && <Footer />}
-    </nav>
-  );
-}
+        /* if user is authenticated, show the authenticated app, otherwise, the unauthenticated app */
+        if (isAuthenticated) {
+          return <AuthenticatedApp />   
+        } else {
+          /* alternatively, we can drop the else section and provide a simple return, and the conditional will operate in the same way */
+          return <UnAuthenticatedApp />   
+        }
+      }
+      To use conditions within a component's returned JSX, you can use the ternary operator or short-circuiting (&& and || operators).
+
+      function Header() {
+        const isAuthenticated = checkAuth();
+
+        return (
+          <nav>
+            {/* if isAuth is true, show nothing. If false, show Logo  */}
+            {isAuthenticated || <Logo />}
+            {/* if isAuth is true, show AuthenticatedApp. If false, show Login  */}
+            {isAuthenticated ? <AuthenticatedApp /> : <LoginScreen />}
+            {/* if isAuth is true, show Footer. If false, show nothing */}
+            {isAuthenticated && <Footer />}
+          </nav>
+        );
+      }
+      
 Fragments are special components for displaying multiple components without adding an extra element to the DOM. They're ideal for conditional logic that has multiple adjacent components or elements.
+>>>
 
-/*
-  We can improve the logic in the previous example.
-  If isAuthenticated is true, how do we display both the AuthenticatedApp and Footer components?
-*/
-function Header() {
-  const isAuthenticated = checkAuth();
+      /*
+        We can improve the logic in the previous example.
+        If isAuthenticated is true, how do we display both the AuthenticatedApp and Footer components?
+      */
+      function Header() {
+        const isAuthenticated = checkAuth();
 
-  return (
-    <nav>
-      <Logo />
-      {/* 
-        We can render both components with a fragment. 
-        Fragments are very concise: <> </>
-      */}
-      {isAuthenticated ? (
-        <>
-          <AuthenticatedApp />
-          <Footer />
-        </>
-      ) : (
-        <Login />
-      )}
-    </nav>
-  );
-}
-/* 
-  Note: An alternate syntax for fragments is React.Fragment:
-  <React.Fragment>
-     <AuthenticatedApp />
-     <Footer />
-  </React.Fragment>
-*/
+        return (
+          <nav>
+            <Logo />
+            {/* 
+              We can render both components with a fragment. 
+              Fragments are very concise: <> </>
+            */}
+            {isAuthenticated ? (
+              <>
+                <AuthenticatedApp />
+                <Footer />
+              </>
+            ) : (
+              <Login />
+            )}
+          </nav>
+        );
+      }
+      /* 
+        Note: An alternate syntax for fragments is React.Fragment:
+        <React.Fragment>
+           <AuthenticatedApp />
+           <Footer />
+        </React.Fragment>
+      */
