@@ -5,7 +5,7 @@
 >>> adding productts to wish lists
 
 >>> CONCEPT OF SINGLETONS, accessing two independent components;
-                       
+                       abcderf
 
 >>> observers will register, OBSERVERS(hotel receptionist wake up call)
 
