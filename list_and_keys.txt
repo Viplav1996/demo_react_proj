@@ -2,7 +2,7 @@ Lists and Keys
 Use the .map() function to convert lists of data (arrays) into lists of elements.
 
 const people = ["John", "Bob", "Fred"];
-const peopleList = people.map(person => <p>{person}</p>);
+const peopleList = people.map (person => <p>{person}</p>);
 .map() can be used for components as well as plain JSX elements.
 
 function App() {
