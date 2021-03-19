@@ -1,0 +1,143 @@
+State and useState
+
+The useState hook gives us state in a function component. State allows us to access and update certain values in our components over time.
+
+Local component state is managed by the React hook useState which gives us both a state variable and a function that allows us to update it.
+
+When we call useState we can give our state a default value by providing it as the first argument when we call useState.
+
+import React from 'react';
+
+/* 
+  How do you create a state variable?
+  Syntax: const [stateVariable] = React.useState(defaultValue);
+*/
+function App() {
+  const [language] = React.useState('JavaScript');
+  /* 
+    We use array destructuring to declare state variable.
+    Like any variable, we declare we can name it what we like (in this case, 'language').
+  */
+
+  return <div>I am learning {language}</div>;
+}
+Note: Any hook in this section is from the React core library and can be imported individually.
+
+import React, { useState } from "react";
+
+function App() {
+  const [language] = useState("javascript");
+
+  return <div>I am learning {language}</div>;
+}
+useState also gives us a 'setter' function to update the state after it is created.
+
+function App() {
+  /* 
+   The setter function is always the second destructured value.
+   The naming convention for the setter function is to be prefixed with 'set'.
+  */
+  const [language, setLanguage] = React.useState("javascript");
+
+  return (
+    <div>
+      <button onClick={() => setLanguage("python")}>
+        Learn Python
+      </button>
+      {/*  
+        Why use an inline arrow function here instead of immediately calling it like so: onClick={setterFn()}? 
+        If so, setLanguage would be called immediately and not when the button was clicked by the user.
+        */}
+      <p>I am now learning {language}</p>
+    </div>
+  );
+}
+
+/* 
+ Note: whenever the setter function is called, the state updates,
+ and the App component re-renders to display the new state.
+ Whenever state is updated, the component will be re-rendered
+*/
+useState can be used once or multiple times within a single component. And it can accept primitive or object values to manage state.
+
+function App() {
+  const [language, setLanguage] = React.useState("python");
+  const [yearsExperience, setYearsExperience] = React.useState(0);
+
+  return (
+    <div>
+      <button onClick={() => setLanguage("javascript")}>
+        Change language to JS
+      </button>
+      <input
+        type="number"
+        value={yearsExperience}
+        onChange={event => setYearsExperience(event.target.value)}
+      />
+      <p>I am now learning {language}</p>
+      <p>I have {yearsExperience} years of experience</p>
+    </div>
+  );
+}
+If the new state depends on the previous state, to guarantee the update is done reliably we can use a function within the setter function that gives us the correct previous state.
+
+/* We have the option to organize state using whatever is the most appropriate data type, according to the data we're managing */
+function App() {
+  const [developer, setDeveloper] = React.useState({
+    language: "",
+    yearsExperience: 0
+  });
+
+  function handleChangeYearsExperience(event) {
+    const years = event.target.value;
+    /* We must pass in the previous state object we had with the spread operator to spread out all of its properties */
+    setDeveloper({ ...developer, yearsExperience: years });
+  }
+
+  return (
+    <div>
+      {/* No need to get previous state here; we are replacing the entire object */}
+      <button
+        onClick={() =>
+          setDeveloper({
+            language: "javascript",
+            yearsExperience: 0
+          })
+        }
+      >
+        Change language to JS
+      </button>
+      {/* We can also pass a reference to the function */}
+      <input
+        type="number"
+        value={developer.yearsExperience}
+        onChange={handleChangeYearsExperience}
+      />
+      <p>I am now learning {developer.language}</p>
+      <p>I have {developer.yearsExperience} years of experience</p>
+    </div>
+  );
+}
+If you are managing multiple primitive values, using useState multiple times is often better than using it once with an object. You don't have to worry about forgetting to combine the old state with the new state.
+
+function App() {
+  const [developer, setDeveloper] = React.useState({
+    language: "",
+    yearsExperience: 0,
+    isEmployed: false
+  });
+
+  function handleToggleEmployment(event) {
+    /* We get the previous state variable's value in the parameters.
+       We can name 'prevState' however we like.
+    */
+    setDeveloper(prevState => {
+      return { ...prevState, isEmployed: !prevState.isEmployed };
+      // It is essential to return the new state from this function
+    });
+  }
+
+  return (
+    <button onClick={handleToggleEmployment}>Toggle Employment Status</button>
+  );
+}
