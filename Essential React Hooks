@@ -6,31 +6,32 @@ Local component state is managed by the React hook useState which gives us both 
 
 When we call useState we can give our state a default value by providing it as the first argument when we call useState.
 
-import React from 'react';
+>>>
+          
+          import React from 'react';
+        /* 
+          How do you create a state variable?
+          Syntax: const [stateVariable] = React.useState(defaultValue);
+        */
+        function App() {
+          const [language] = React.useState('JavaScript');
+          /* 
+            We use array destructuring to declare state variable.
+            Like any variable, we declare we can name it what we like (in this case, 'language').
+          */
 
-/* 
-  How do you create a state variable?
-  Syntax: const [stateVariable] = React.useState(defaultValue);
-*/
-function App() {
-  const [language] = React.useState('JavaScript');
-  /* 
-    We use array destructuring to declare state variable.
-    Like any variable, we declare we can name it what we like (in this case, 'language').
-  */
+          return <div>I am learning {language}</div>;
+        }
+        Note: Any hook in this section is from the React core library and can be imported individually.
 
-  return <div>I am learning {language}</div>;
-}
-Note: Any hook in this section is from the React core library and can be imported individually.
+        import React, { useState } from "react";
 
-import React, { useState } from "react";
+        function App() {
+          const [language] = useState("javascript");
 
-function App() {
-  const [language] = useState("javascript");
-
-  return <div>I am learning {language}</div>;
-}
-useState also gives us a 'setter' function to update the state after it is created.
+          return <div>I am learning {language}</div>;
+        }
+        useState also gives us a 'setter' function to update the state after it is created.
 
 function App() {
   /* 
