@@ -1,0 +1,160 @@
+Side effects and useEffect
+useEffect lets us perform side effects in function components. So what are side effects?
+
+Side effects are where we need to reach into the outside world. For example, fetching data from an API or working with the DOM.
+
+They are actions that can change our component state in an unpredictable fashion (that have cause 'side effects').
+
+useEffect accepts a callback function (called the 'effect' function), which will by default run every time there is a re-render.
+
+It runs once our component mounts, which is the right time to perform a side effect in the component lifecycle.
+
+/* What does our code do? Picks a color from the colors array and makes it the background color */
+import React, { useState, useEffect } from 'react';
+
+function App() {
+  const [colorIndex, setColorIndex] = useState(0);
+  const colors = ["blue", "green", "red", "orange"];
+
+  /* 
+    We are performing a 'side effect' since we are working with an API.
+    We are working with the DOM, a browser API outside of React.
+  */
+  useEffect(() => {
+    document.body.style.backgroundColor = colors[colorIndex];
+  });
+  /* Whenever state is updated, App re-renders and useEffect runs */
+
+  function handleChangeColor() {
+    /* This code may look complex, but all it does is go to the next color in the 'colors' array, and if it is on the last color, goes back to the beginning */
+    const nextIndex = colorIndex + 1 === colors.length ? 0 : colorIndex + 1;
+    setColorIndex(nextIndex);
+  }
+
+  return (
+    <button onClick={handleChangeColor}>
+      Change background color
+    </button>
+  );
+}
+To avoid executing the effect callback after each render, we provide a second argument, an empty array.
+
+function App() {
+  ...
+  /* 
+    With an empty array, our button doesn't work no matter how many times we click it... 
+    The background color is only set once, when the component first mounts.
+  */
+  useEffect(() => {
+    document.body.style.backgroundColor = colors[colorIndex];
+  }, []);
+
+  /* 
+    How do we not have the effect function run for every state update  but still have it work whenever the button is clicked? 
+  */
+
+  return (
+    <button onClick={handleChangeIndex}>
+      Change background color
+    </button>
+  );
+}
+useEffect lets us conditionally perform effects with the dependencies array.
+
+The dependencies array is the second argument and if any one of the values in the array changes, the effect function runs again.
+
+function App() {
+  const [colorIndex, setColorIndex] = React.useState(0);
+  const colors = ["blue", "green", "red", "orange"];
+
+  /* 
+    Let's add colorIndex to our dependencies array
+    When colorIndex changes, useEffect will execute the effect function again
+  */
+  useEffect(() => {
+    document.body.style.backgroundColor = colors[colorIndex];
+    /* 
+      When we use useEffect, we must think about what state values
+      we want our side effect to sync with
+    */
+  }, [colorIndex]);
+
+  function handleChangeIndex() {
+    const next = colorIndex + 1 === colors.length ? 0 : colorIndex + 1;
+    setColorIndex(next);
+  }
+
+  return (
+    <button onClick={handleChangeIndex}>
+      Change background color
+    </button>
+  );
+}
+useEffect lets us unsubscribe from certain effects by returning a function at the end.
+
+function MouseTracker() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  React.useEffect(() => {
+    // .addEventListener() sets up an active listener...
+    window.addEventListener("mousemove", handleMouseMove);
+
+    /* ...So when we navigate away from this page, it needs to be
+       removed to stop listening. Otherwise, it will try to set
+       state in a component that doesn't exist (causing an error)
+
+     We unsubscribe any subscriptions / listeners w/ this 'cleanup function')
+     */
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
+function handleMouseMove(event) {
+   setMousePosition({
+     x: event.pageX,
+     y: event.pageY
+   });
+}
+
+  return (
+    <div>
+      <h1>The current mouse position is:</h1>
+      <p>
+        X: {mousePosition.x}, Y: {mousePosition.y}
+      </p>
+    </div>
+  );
+}
+useEffect is the hook to use when you want to make an HTTP request (namely, a GET request when the component mounts).
+
+Note that handling promises with the more concise async/await syntax requires creating a separate function. (Why? The effect callback function cannot be async.)
+
+const endpoint = "https://api.github.com/users/reedbarger";
+
+// Using .then() callback functions to resolve promise
+function App() {
+  const [user, setUser] = React.useState(null);
+
+  React.useEffect(() => {
+    fetch(endpoint)
+      .then(response => response.json())
+      .then(data => setUser(data));
+  }, []);
+}
+
+// Using async / await syntax to resolve promise:
+function App() {
+  const [user, setUser] = React.useState(null);
+  // cannot make useEffect callback function async
+  React.useEffect(() => {
+    getUser();
+  }, []);
+
+  // We must apply async keyword to a separate function
+  async function getUser() {
+    const response = await fetch(endpoint);
+    const data = await response.json();
+    setUser(data);
+  }
+}
