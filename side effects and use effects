@@ -1,4 +1,7 @@
-### Side effects and useEffect
+      Side effects and useEffect
+      
+      
+      
       useEffect lets us perform side effects in function components. So what are side effects?
 
       Side effects are where we need to reach into the outside world. For example, fetching data from an API or working with the DOM.
