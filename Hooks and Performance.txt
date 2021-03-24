@@ -1,4 +1,5 @@
 Preventing Re-renders and React.memo
+
 React.memo is a function that allows us to optimize the way our components are rendered.
 
 In particular, it performs a process called memoization that helps us prevent our components from re-rendering when they do not need to do so (see React.useMemo for more complete definition of memoization).
