@@ -1,0 +1,47 @@
+Preventing Re-renders and React.memo
+React.memo is a function that allows us to optimize the way our components are rendered.
+
+In particular, it performs a process called memoization that helps us prevent our components from re-rendering when they do not need to do so (see React.useMemo for more complete definition of memoization).
+
+React.memo helps most with preventing lists of components from being re-rendered when their parent components re-render.
+
+/* 
+  In the following application, we are keeping track of our programming skills. We can create new skills using an input, and they are added to the list (shown in the SkillList component). If we click on a skill, it is deleted.
+*/
+
+function App() {
+  const [skill, setSkill] = React.useState('')
+  const [skills, setSkills] = React.useState([
+    'HTML', 'CSS', 'JavaScript'
+  ])
+
+  function handleChangeInput(event) {
+    setSkill(event.target.value);
+  }
+
+  function handleAddSkill() {
+    setSkills(skills.concat(skill))
+  }
+
+  return (
+    <>
+      <input onChange={handleChangeInput} />
+      <button onClick={handleAddSkill}>Add Skill</button>
+      <SkillList skills={skills} />
+    </>
+  );
+}
+
+/* But the problem, if you run this code yourself, is that when we type into the input, because the parent component of SkillList (App) re-renders, due to the state being updated on every keystroke, the SkillList is rerendered constantly (as indicated by the console.log) */
+
+/* However, once we wrap the SkillList component in React.memo (which is a higher-order function, meaning it accepts a function as an argument), it no longer re-renders unnecessarily when our parent component does. */
+const SkillList = React.memo(({ skills }) => {
+  console.log('rerendering');
+  return (
+    <ul>
+    {skills.map((skill, i) => <li key={i}>{skill}</li>)}
+    </ul>
+  )
+})
+
+export default App
