@@ -40,20 +40,20 @@ What is happening is the handleRemoveSkill callback function is being recreated 
 
 To fix our app, replace handleRemoveSkill with:
 
-const handleRemoveSkill = React.useCallback((skill) => {
-  setSkills(skills.filter(s => s !== skill))
-}, [skills])
+            const handleRemoveSkill = React.useCallback((skill) => {
+              setSkills(skills.filter(s => s !== skill))
+            }, [skills])
 
-Try it yourself!
-*/
-const SkillList = React.memo(({ skills, handleRemoveSkill }) => {
-  console.log('rerendering');
-  return (
-    <ul>
-    {skills.map(skill => <li key={skill} onClick={() => handleRemoveSkill(skill)}>{skill}</li>)}
-    </ul>
-  )
-})
+            Try it yourself!
+            */
+            const SkillList = React.memo(({ skills, handleRemoveSkill }) => {
+              console.log('rerendering');
+              return (
+                <ul>
+                {skills.map(skill => <li key={skill} onClick={() => handleRemoveSkill(skill)}>{skill}</li>)}
+                </ul>
+              )
+            })
 
 
-export default App
+            export default App
