@@ -1,6 +1,8 @@
-useCallback is a hook that is used for improving our component performance. Callback functions are the name of functions that are "called back" within a parent component.
+useCallback is a hook that is used for improving our component performance. 
+Callback functions are the name of functions that are "called back" within a parent component.
 
-The most common usage is to have a parent component with a state variable, but you want to update that state from a child component. What do you do? You pass down a callback function to the child from the parent. That allows us to update state in the parent component.
+The most common usage is to have a parent component with a state variable, but you want to update that state from a child component. 
+What do you do? You pass down a callback function to the child from the parent. That allows us to update state in the parent component.
 
 useCallback functions in a similar way as React.memo. It memoizes callback functions, so it is not recreated on every re-render. Using useCallback correctly can improve the performance of our app.
 
