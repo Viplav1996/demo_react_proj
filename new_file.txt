@@ -1,0 +1,1 @@
+This is the intro to the React tutorial where main agenda is to learn the basics of React
