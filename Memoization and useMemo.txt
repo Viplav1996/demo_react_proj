@@ -6,59 +6,59 @@ Memoization means that if a calculation has been done before with a given input,
 
 useMemo returns a value from the computation, which is then stored in a variable.
 
-/* Building upon our skills app, let's add a feature to search through our available skills through an additional search input. We can add this in a component called SearchSkills (shown above our SkillList).
-*/
+      /* Building upon our skills app, let's add a feature to search through our available skills through an additional search input. We can add this in a component called SearchSkills (shown above our SkillList).
+      */
 
-function App() {
-  const [skill, setSkill] = React.useState('')
-  const [skills, setSkills] = React.useState([
-    'HTML', 'CSS', 'JavaScript', ...thousands more items
-  ])
+      function App() {
+        const [skill, setSkill] = React.useState('')
+        const [skills, setSkills] = React.useState([
+          'HTML', 'CSS', 'JavaScript', ...thousands more items
+        ])
 
-  function handleChangeInput(event) {
-    setSkill(event.target.value);
-  }
+        function handleChangeInput(event) {
+          setSkill(event.target.value);
+        }
 
-  function handleAddSkill() {
-    setSkills(skills.concat(skill))
-  }
+        function handleAddSkill() {
+          setSkills(skills.concat(skill))
+        }
 
-  const handleRemoveSkill = React.useCallback((skill) => {
-    setSkills(skills.filter(s => s !== skill))
-  }, [skills])
-   
-  return (
-    <>
-      <SearchSkills skills={skills} />
-      <input onChange={handleChangeInput} />
-      <button onClick={handleAddSkill}>Add Skill</button>
-      <SkillList skills={skills} handleRemoveSkill={handleRemoveSkill} />
-    </>
-  );
-}
+        const handleRemoveSkill = React.useCallback((skill) => {
+          setSkills(skills.filter(s => s !== skill))
+        }, [skills])
 
-/* Let's imagine we have a list of thousands of skills that we want to search through. How do we performantly find and show the skills that match our search term as the user types into the input ? */
-function SearchSkills() {
-  const [searchTerm, setSearchTerm] = React.useState('');  
-      
-  /* We use React.useMemo to memoize (remember) the returned value from our search operation and only run when it the searchTerm changes */
-  const searchResults = React.useMemo(() => {
-    return skills.filter((s) => s.includes(searchTerm);
-  }), [searchTerm]);
-    
-  function handleSearchInput(event) {
-    setSearchTerm(event.target.value);
-  }
-    
-  return (
-    <>
-    <input onChange={handleSearchInput} />
-    <ul>
-      {searchResults.map((result, i) => <li key={i}>{result}</li>
-    </ul>
-    </>
-  );
-}
+        return (
+          <>
+            <SearchSkills skills={skills} />
+            <input onChange={handleChangeInput} />
+            <button onClick={handleAddSkill}>Add Skill</button>
+            <SkillList skills={skills} handleRemoveSkill={handleRemoveSkill} />
+          </>
+        );
+      }
+
+      /* Let's imagine we have a list of thousands of skills that we want to search through. How do we performantly find and show the skills that match our search term as the user types into the input ? */
+      function SearchSkills() {
+        const [searchTerm, setSearchTerm] = React.useState('');  
+
+        /* We use React.useMemo to memoize (remember) the returned value from our search operation and only run when it the searchTerm changes */
+        const searchResults = React.useMemo(() => {
+          return skills.filter((s) => s.includes(searchTerm);
+        }), [searchTerm]);
+
+        function handleSearchInput(event) {
+          setSearchTerm(event.target.value);
+        }
+
+        return (
+          <>
+          <input onChange={handleSearchInput} />
+          <ul>
+            {searchResults.map((result, i) => <li key={i}>{result}</li>
+          </ul>
+          </>
+        );
+      }
 
 
-export default App
+      export default App
