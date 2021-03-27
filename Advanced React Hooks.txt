@@ -66,9 +66,9 @@ Context is helpful for passing props down multiple levels of child components fr
         );
 The useContext hook allows us to consume context in any function component that is a child of the Provider, instead of using the render props pattern.
 
-function Header() {
-  /* We pass in the entire context object to consume it and we can remove the Consumer tags */
-  const user = React.useContext(UserContext);
-    
-  return <header>Welcome, {user.name}!</header>;
-};
+        function Header() {
+          /* We pass in the entire context object to consume it and we can remove the Consumer tags */
+          const user = React.useContext(UserContext);
+
+          return <header>Welcome, {user.name}!</header>;
+        };
