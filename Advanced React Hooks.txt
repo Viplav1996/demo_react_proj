@@ -27,43 +27,43 @@ In React, we want to avoid the following problem of creating multiple props to p
         const Header = ({ user }) => <header>Welcome, {user.name}!</header>;
 Context is helpful for passing props down multiple levels of child components from a parent component.
 
-/* 
-  Here is the previous example rewritten with Context.
-  First we create context, where we can pass in default values
-  We call this 'UserContext' because we're passing down user data
-*/
-const UserContext = React.createContext();
+        /* 
+          Here is the previous example rewritten with Context.
+          First we create context, where we can pass in default values
+          We call this 'UserContext' because we're passing down user data
+        */
+        const UserContext = React.createContext();
 
-function App() {
-  const [user] = React.useState({ name: "Fred" });
+        function App() {
+          const [user] = React.useState({ name: "Fred" });
 
-  return (
-    {/* 
-      We wrap the parent component with the Provider property 
-      We pass data down the component tree on the value prop
-     */}
-    <UserContext.Provider value={user}>
-      <Main />
-    </UserContext.Provider>
-  );
-}
+          return (
+            {/* 
+              We wrap the parent component with the Provider property 
+              We pass data down the component tree on the value prop
+             */}
+            <UserContext.Provider value={user}>
+              <Main />
+            </UserContext.Provider>
+          );
+        }
 
-const Main = () => (
-  <>
-    <Header />
-    <div>Main app content</div>
-  </>
-);
+        const Main = () => (
+          <>
+            <Header />
+            <div>Main app content</div>
+          </>
+        );
 
-/* 
-  We can't remove the two 'user' props. Instead, we can just use the Consumer property to consume the data where we need it
-*/
-const Header = () => (
-    {/* We use a pattern called render props to get access to the data */}
-    <UserContext.Consumer>
-      {user => <header>Welcome, {user.name}!</header>}
-    </UserContext.Consumer>
-);
+        /* 
+          We can't remove the two 'user' props. Instead, we can just use the Consumer property to consume the data where we need it
+        */
+        const Header = () => (
+            {/* We use a pattern called render props to get access to the data */}
+            <UserContext.Consumer>
+              {user => <header>Welcome, {user.name}!</header>}
+            </UserContext.Consumer>
+        );
 The useContext hook allows us to consume context in any function component that is a child of the Provider, instead of using the render props pattern.
 
 function Header() {
