@@ -1,0 +1,55 @@
+Hooks were created to easily reuse behavior between components, similar to how components were created to reuse structure across our application.
+
+Hooks let us add custom functionality to our apps that suits our needs and can be combined with all the existing hooks that we've covered.
+
+Hooks can also be included in third-party libraries for the sake of all React developers. There are many great React libraries that provide custom hooks such as @apollo/client, react-query, swr and more.
+
+/* Here is a custom React hook called useWindowSize that I wrote in order to calculate the window size (width and height) of any component it is used in */
+
+import React from "react";
+
+export default function useWindowSize() {
+  const isSSR = typeof window !== "undefined";
+  const [windowSize, setWindowSize] = React.useState({
+    width: isSSR ? 1200 : window.innerWidth,
+    height: isSSR ? 800 : window.innerHeight,
+  });
+
+  function changeWindowSize() {
+    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+  }
+
+  React.useEffect(() => {
+    window.addEventListener("resize", changeWindowSize);
+
+    return () => {
+      window.removeEventListener("resize", changeWindowSize);
+    };
+  }, []);
+
+  return windowSize;
+}
+
+/* To use the hook, we just need to import it where we need, call it, and use the width wherever we want to hide or show certain elements, such as in a Header component. */
+
+// components/Header.js
+
+import React from "react";
+import useWindowSize from "../utils/useWindowSize";
+
+function Header() {
+  const { width } = useWindowSize();
+
+  return (
+    <div>
+      {/* visible only when window greater than 500px */}
+      {width > 500 && (
+        <>
+         Greater than 500px!
+        </>
+      )}
+      {/* visible at any window size */}
+	  <p>I'm always visible</p>
+    </div>
+  );
+}
