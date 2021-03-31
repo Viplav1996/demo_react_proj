@@ -10,9 +10,10 @@ First, you cannot listen for events on React components – only on JSX elements
       }
 
       /* In HTML, onclick is all lowercase, plus the event handler includes a set of parentheses after being referenced */
-      <button onclick="handleToggleTheme()">
-        Toggle Theme
-      </button>
+      
+                  <button onclick="handleToggleTheme()">
+                    Toggle Theme
+                  </button>
 
       /* 
         In JSX, onClick is camelcase, like attributes / props.
