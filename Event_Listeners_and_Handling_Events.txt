@@ -19,9 +19,9 @@ First, you cannot listen for events on React components – only on JSX elements
         In JSX, onClick is camelcase, like attributes / props.
         We also pass a reference to the function with curly braces.
       */
-      <button onClick={handleToggleTheme}>
-        Toggle Theme
-      </button>
+                  <button onClick={handleToggleTheme}>
+                    Toggle Theme
+                  </button>
       The most essential React events to know are onClick, onChange, and onSubmit.
 
       onClick handles click events on JSX elements (namely on buttons)
