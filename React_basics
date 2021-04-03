@@ -26,15 +26,15 @@ A JSX element: called a "root node", because it is the root of our application. 
 An HTML (DOM) element: Where the app is inserted within an HTML page. The element is usually a div with an id of "root", located in an index.html file.
  
  
- // Packages can be installed locally or brought in through a CDN link (added to head of HTML document) 
-import React from "react";
-import ReactDOM from "react-dom";
+         // Packages can be installed locally or brought in through a CDN link (added to head of HTML document) 
+        import React from "react";
+        import ReactDOM from "react-dom";
 
-// root node (usually a component) is most often called "App"
-const App = <h1>Hello React!</h1>;
+        // root node (usually a component) is most often called "App"
+        const App = <h1>Hello React!</h1>;
 
-// ReactDOM.render(root node, HTML element)
-ReactDOM.render(App, document.getElementById("root"));
+        // ReactDOM.render(root node, HTML element)
+        ReactDOM.render(App, document.getElementById("root"));
  
 #######################################################################################
 
