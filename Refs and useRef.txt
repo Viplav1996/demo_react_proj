@@ -6,16 +6,16 @@ Once we create a reference, we use the current property to modify (mutate) the e
 
           function App() {
             const [query, setQuery] = React.useState("react hooks");
-            /* We can pass useRef a default value.
-               We don't need it here, so we pass in null to reference an empty object
-            */
+  /* We can pass useRef a default value.
+     We don't need it here, so we pass in null to reference an empty object
+  */
             const searchInput = useRef(null);
 
             function handleClearSearch() {
-              /* 
-                .current references the input element upon mount
-                useRef can store basically any value in its .current property
-              */
+    /* 
+      .current references the input element upon mount
+      useRef can store basically any value in its .current property
+    */
               searchInput.current.value = "";
               searchInput.current.focus();
             }
