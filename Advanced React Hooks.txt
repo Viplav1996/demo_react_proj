@@ -45,6 +45,7 @@ Context is helpful for passing props down multiple levels of child components fr
           return (
             {/* 
               We wrap the parent component with the Provider property 
+              
               We pass data down the component tree on the value prop
              */}
             <UserContext.Provider value={user}>
