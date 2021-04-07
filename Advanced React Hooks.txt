@@ -3,6 +3,7 @@ In React, we want to avoid the following problem of creating multiple props to p
 
         /* 
           React Context helps us avoid creating multiple duplicate props.
+          
           This pattern is also called props drilling.
         */
 
