@@ -10,28 +10,28 @@ React.memo helps most with preventing lists of components from being re-rendered
             In the following application, we are keeping track of our programming skills. We can create new skills using an input, and they are added to the list (shown in the SkillList component). If we click on a skill, it is deleted.
           */
 
-          function App() {
-            const [skill, setSkill] = React.useState('')
-            const [skills, setSkills] = React.useState([
-              'HTML', 'CSS', 'JavaScript'
-            ])
+                    function App() {
+                      const [skill, setSkill] = React.useState('')
+                      const [skills, setSkills] = React.useState([
+                        'HTML', 'CSS', 'JavaScript'
+                      ])
 
-            function handleChangeInput(event) {
-              setSkill(event.target.value);
-            }
+                      function handleChangeInput(event) {
+                        setSkill(event.target.value);
+                      }
 
-            function handleAddSkill() {
-              setSkills(skills.concat(skill))
-            }
+                      function handleAddSkill() {
+                        setSkills(skills.concat(skill))
+                      }
 
-            return (
-              <>
-                <input onChange={handleChangeInput} />
-                <button onClick={handleAddSkill}>Add Skill</button>
-                <SkillList skills={skills} />
-              </>
-            );
-          }
+                      return (
+                        <>
+                          <input onChange={handleChangeInput} />
+                          <button onClick={handleAddSkill}>Add Skill</button>
+                          <SkillList skills={skills} />
+                        </>
+                      );
+                    }
 
           /* But the problem, if you run this code yourself, is that when we type into the input, because the parent component of SkillList (App) re-renders, due to the state being updated on every keystroke, the SkillList is rerendered constantly (as indicated by the console.log) */
 
