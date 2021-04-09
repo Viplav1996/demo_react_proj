@@ -26,7 +26,7 @@ useCallback functions in a similar way as React.memo. It memoizes callback funct
                             setSkills(skills.filter(s => s !== skill))
                           }
 
-                          /* Next, we pass handleRemoveSkill down as a prop, or since this is a function, as a callback function to be used within SkillList */
+              /* Next, we pass handleRemoveSkill down as a prop, or since this is a function, as a callback function to be used within SkillList */
                           return (
                             <>
                               <input onChange={handleChangeInput} />
