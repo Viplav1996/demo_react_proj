@@ -42,23 +42,24 @@ useMemo returns a value from the computation, which is then stored in a variable
                     const [searchTerm, setSearchTerm] = React.useState('');  
 
         /* We use React.useMemo to memoize (remember) the returned value from our search operation and only run when it the searchTerm changes */
-        const searchResults = React.useMemo(() => {
-          return skills.filter((s) => s.includes(searchTerm);
-        }), [searchTerm]);
 
-        function handleSearchInput(event) {
-          setSearchTerm(event.target.value);
-        }
+              const searchResults = React.useMemo(() => {
+                return skills.filter((s) => s.includes(searchTerm);
+              }), [searchTerm]);
 
-        return (
-          <>
-          <input onChange={handleSearchInput} />
-          <ul>
-            {searchResults.map((result, i) => <li key={i}>{result}</li>
-          </ul>
-          </>
-        );
-      }
+              function handleSearchInput(event) {
+                setSearchTerm(event.target.value);
+              }
+
+              return (
+                <>
+                <input onChange={handleSearchInput} />
+                <ul>
+                  {searchResults.map((result, i) => <li key={i}>{result}</li>
+                </ul>
+                </>
+              );
+            }
 
 
-      export default App
+            export default App
