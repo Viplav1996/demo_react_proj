@@ -38,8 +38,8 @@ useMemo returns a value from the computation, which is then stored in a variable
             }
 
       /* Let's imagine we have a list of thousands of skills that we want to search through. How do we performantly find and show the skills that match our search term as the user types into the input ? */
-      function SearchSkills() {
-        const [searchTerm, setSearchTerm] = React.useState('');  
+                  function SearchSkills() {
+                    const [searchTerm, setSearchTerm] = React.useState('');  
 
         /* We use React.useMemo to memoize (remember) the returned value from our search operation and only run when it the searchTerm changes */
         const searchResults = React.useMemo(() => {
