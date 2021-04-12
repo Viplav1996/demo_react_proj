@@ -7,23 +7,25 @@ Reducers are simple, predictable (pure) functions that take a previous state obj
 
           switch (action.type) {
             /* If action.type has the string 'LOGIN' on it, we get data from the payload object on action */
-            case "LOGIN":
-              return { 
-                username: action.payload.username, 
-                email: action.payload.email
-                isAuth: true 
-              };
-            case "SIGNOUT":
-              return { 
-                username: "",
-                email: "",
-                isAuth: false 
-              };
-            default:
-              /* If no case matches the action received, return the previous state */
-              return state;
-          }
-        }
+            
+                    case "LOGIN":
+                      return { 
+                        username: action.payload.username, 
+                        email: action.payload.email
+                        isAuth: true 
+                      };
+                    case "SIGNOUT":
+                      return { 
+                        username: "",
+                        email: "",
+                        isAuth: false 
+                      };
+                    default:
+                      /* If no case matches the action received, return the previous state */
+                      return state;
+                  }
+                }
+                
 Reducers are a powerful pattern for managing state that is used in the popular state management library Redux (commonly used with React).
 
 Reducers can be used in React with the useReducer hook in order to manage state across our app, as compared to useState (which is for local component state).
