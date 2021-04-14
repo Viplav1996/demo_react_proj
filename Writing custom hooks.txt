@@ -32,22 +32,22 @@ Hooks can also be included in third-party libraries for the sake of all React de
 
 	// components/Header.js
 
-	import React from "react";
-	import useWindowSize from "../utils/useWindowSize";
+		import React from "react";
+		import useWindowSize from "../utils/useWindowSize";
 
-	function Header() {
-	  const { width } = useWindowSize();
+		function Header() {
+		  const { width } = useWindowSize();
 
-	  return (
-	    <div>
-	      {/* visible only when window greater than 500px */}
-	      {width > 500 && (
-		<>
-		 Greater than 500px!
-		</>
-	      )}
-	      {/* visible at any window size */}
-		  <p>I'm always visible</p>
-	    </div>
-	  );
-	}
+		  return (
+		    <div>
+		      {/* visible only when window greater than 500px */}
+		      {width > 500 && (
+			<>
+			 Greater than 500px!
+			</>
+		      )}
+		      {/* visible at any window size */}
+			  <p>I'm always visible</p>
+		    </div>
+		  );
+		}
