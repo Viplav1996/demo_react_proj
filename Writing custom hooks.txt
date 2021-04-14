@@ -4,29 +4,29 @@ Hooks can also be included in third-party libraries for the sake of all React de
 
 	/* Here is a custom React hook called useWindowSize that I wrote in order to calculate the window size (width and height) of any component it is used in */
 
-	import React from "react";
+		import React from "react";
 
-	export default function useWindowSize() {
-	  const isSSR = typeof window !== "undefined";
-	  const [windowSize, setWindowSize] = React.useState({
-	    width: isSSR ? 1200 : window.innerWidth,
-	    height: isSSR ? 800 : window.innerHeight,
-	  });
+		export default function useWindowSize() {
+		  const isSSR = typeof window !== "undefined";
+		  const [windowSize, setWindowSize] = React.useState({
+		    width: isSSR ? 1200 : window.innerWidth,
+		    height: isSSR ? 800 : window.innerHeight,
+		  });
 
-	  function changeWindowSize() {
-	    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-	  }
+		  function changeWindowSize() {
+		    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+		  }
 
-	  React.useEffect(() => {
-	    window.addEventListener("resize", changeWindowSize);
+		  React.useEffect(() => {
+		    window.addEventListener("resize", changeWindowSize);
 
-	    return () => {
-	      window.removeEventListener("resize", changeWindowSize);
-	    };
-	  }, []);
+		    return () => {
+		      window.removeEventListener("resize", changeWindowSize);
+		    };
+		  }, []);
 
-	  return windowSize;
-	}
+		  return windowSize;
+		}
 
 	/* To use the hook, we just need to import it where we need, call it, and use the width wherever we want to hide or show certain elements, such as in a Header component. */
 
