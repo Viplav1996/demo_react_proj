@@ -1,4 +1,4 @@
 There are two essential rules of using React hooks that we cannot violate for them to work properly:
 
-    Hooks can only be used within function components (not plain JavaScript functions or class components)
+  Hooks can only be used within function components (not plain JavaScript functions or class components)
     Hooks can only be called at the top of components (they cannot be in conditionals, loops, or nested functions)
