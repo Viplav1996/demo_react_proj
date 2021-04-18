@@ -27,6 +27,7 @@ First, you cannot listen for events on React components – only on JSX elements
       onClick handles click events on JSX elements (namely on buttons)
       onChange handles keyboard events (namely a user typing into an input or textarea)
       onSubmit handles form submissions from the user
+      
       function App() {
         function handleInputChange(event) {
           /* When passing the function to an event handler, like onChange we get access to data about the event (an object) */
